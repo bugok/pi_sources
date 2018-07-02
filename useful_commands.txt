@@ -1,4 +1,0 @@
-# Set output audio to analog:
-
-amixer cset numid=3 1
-
