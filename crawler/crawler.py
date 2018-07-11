@@ -206,6 +206,7 @@ def write_m3u_file(out_m3u: Any, playlists: List[Playlist]) -> None:
 @click.command()
 @click.argument('out_m3u', type=click.File("wt"))
 def main(out_m3u: click.utils.LazyFile):
+    """Crawls the eco99fm site writing an m3u playlist to the given M3U_FILE"""
     crawler = SeleniumCrawler()
     crawler.handle_page()
     to_process = []
