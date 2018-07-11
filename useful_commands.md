@@ -1,5 +1,5 @@
 
-# Audio output 
+# Audio output
 
 ## Set output audio to analog:
 
@@ -11,10 +11,32 @@
 
 `vlc --extraintf=http`
 
-## Set the password 
+## Set the password
 
-(Probably preferable to set using the UI, to avoid having the password in 
+(Probably preferable to set using the UI, to avoid having the password in
 the bash history)
 
 `vlc --http-password=MYPASS`
 
+## Set a static IP
+
+I mostly followed [this guide](https://www.modmypi.com/blog/how-to-give-your-raspberry-pi-a-static-ip-address-update).
+Here's what I had setup (as I'm using only wireless and my router's IP address
+is 192.168.1.1):
+
+```
+interface wlan0
+static ip_address=192.168.1.80/24
+static routers=192.168.1.1
+static domain_name_servers=192.168.1.1 8.8.8.8
+```
+
+In order to activate this, I turned the interface off and on (while being
+connected to the pi directly):
+
+```
+sudo ifconfig wlan0 down
+sudo ifconfig wlan0 up
+```
+
+After a few seconds, `ifconfig` was able to to show the static IP I set.
