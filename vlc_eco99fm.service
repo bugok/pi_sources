@@ -1,0 +1,22 @@
+# This is mostly taken from https://wiki.archlinux.org/index.php/VLC_media_player#systemd_service
+# As mentioned in the page, there should be a vlcd user setup first:
+# `useradd -c "VLC daemon" -d / -G audio -M -p \! -r -s /usr/bin/nologin -u 75 -U vlcd`
+
+[Unit]
+Description=VLC running with a custom eco99fm playlist. 
+After=network.target
+
+[Service]
+Type=forking
+# Don't run as root
+User=vlcd
+ExecStart=/usr/bin/vlc --daemon --syslog --random -I http --http-port 8090 --http-password YOUR_PASSWORD https://raw.githubusercontent.com/bugok/pi_sources/master/eco99_playlists.m3u
+# Init analog output
+ExecStartPre=/usr/bin/amixer cset numid=3 1
+# Increase volume to 80%, had an issue escaping, so found that -1700 is about 80%
+ExecStartPre=/usr/bin/amixer cset numid=1 -- -1700
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
+
