@@ -15,6 +15,11 @@ ExecStart=/usr/bin/vlc --daemon --syslog --random -I http --http-port 8090 --htt
 ExecStartPre=/usr/bin/amixer cset numid=3 1
 # Increase volume to 80%, had an issue escaping, so found that -1700 is about 80%
 ExecStartPre=/usr/bin/amixer cset numid=1 -- -1700
+# This is bad, I know. This is to solve resolving github.com very early on the boot process.
+# The closest thing seems to be this:
+# https://www.freedesktop.org/wiki/Software/systemd/NetworkTarget/
+# but it didn't work
+ExecStartPre=/bin/sleep 10
 Restart=on-abort
 
 [Install]
