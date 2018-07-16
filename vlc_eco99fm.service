@@ -3,7 +3,7 @@
 # `useradd -c "VLC daemon" -d / -G audio -M -p \! -r -s /usr/bin/nologin -u 75 -U vlcd`
 
 [Unit]
-Description=VLC running with a custom eco99fm playlist. 
+Description=VLC running with a custom eco99fm playlist.
 After=network.target
 
 [Service]
@@ -18,10 +18,10 @@ ExecStartPre=/usr/bin/amixer cset numid=1 -- -1700
 # This is bad, I know. This is to solve resolving github.com very early on the boot process.
 # The closest thing seems to be this:
 # https://www.freedesktop.org/wiki/Software/systemd/NetworkTarget/
-# but it didn't work
+# but it didn't work. The reason is because the network is being setup using
+# SysV, and I couldn't find a way to set the dependency properly
 ExecStartPre=/bin/sleep 10
 Restart=on-abort
 
 [Install]
 WantedBy=multi-user.target
-

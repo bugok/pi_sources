@@ -18,6 +18,8 @@ the bash history)
 
 `vlc --http-password=MYPASS`
 
+# Pi Setup
+
 ## Set a static IP
 
 I mostly followed [this guide](https://www.modmypi.com/blog/how-to-give-your-raspberry-pi-a-static-ip-address-update).
@@ -43,15 +45,14 @@ After a few seconds, `ifconfig` was able to to show the static IP I set.
 
 ## Disable power management on wifi
 
-See [this thread](https://www.raspberrypi.org/forums/viewtopic.php?t=197975) 
-for more information, but I got the Pi get unresponsive to  network requests 
-after some time, and it seems like disabling the wifi's power management is 
+See [this thread](https://www.raspberrypi.org/forums/viewtopic.php?t=197975)
+for more information, but I got the Pi get unresponsive to  network requests
+after some time, and it seems like disabling the wifi's power management is
 supposed to help:
 
 ```
 iwconfig wlan0 power off
 ```
 
-Also, added this to `/etc/rc.local` to make sure that the pi runs this 
+Also, added this to `/etc/rc.local` to make sure that the pi runs this
 command on boot.
-
