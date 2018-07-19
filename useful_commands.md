@@ -22,6 +22,12 @@ the bash history)
 
 ## Set a static IP
 
+### What should you do
+
+Configure the static IP using your router. For me, it was done by going to
+my router's IP address (192.168.1.1) and setting the static IP using the web UI.
+
+### What not to do
 I mostly followed [this guide](https://www.modmypi.com/blog/how-to-give-your-raspberry-pi-a-static-ip-address-update).
 Here's what I had setup (as I'm using only wireless and my router's IP address
 is 192.168.1.1):
@@ -42,6 +48,18 @@ sudo ifconfig wlan0 up
 ```
 
 After a few seconds, `ifconfig` was able to to show the static IP I set.
+
+### Why should you set the static IP that way?
+
+To avoid weird stuff. Details [here](https://www.raspberrypi.org/forums/viewtopic.php?f=28&t=218167), but the
+gist is that I had the Pi not respond to network requests (ping, ssh) after a
+while. Spare yourself the unnecessary troubleshooting and use the router to
+specify the static IP.
+
+Thinking about this even more - setting static IPs on the device is more
+collision-prone. If the configuration is in a central place - it's more easy to
+maintain.
+
 
 ## Disable power management on wifi
 
