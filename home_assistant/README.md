@@ -38,6 +38,13 @@ to set up an SSL cert using Let's Encrypt.
 
 - Setup Google Assistant using [this tutorial](https://www.home-assistant.io/components/google_assistant/).
 
+- Setting up virtual hosts using nginx. I created an [nginx config](thelerners.conf)
+which allows me to use virtual hosts. So far, I've created only one virtual host
+for vlc, working with a wildcard certificate. Maybe I'll do more in the future.
+I've created the wildcard certificate using [dehydrated](https://github.com/lukas2511/dehydrated)
+as well (as described in a [previous link](https://www.splitbrain.org/blog/2017-08/10-homeassistant_duckdns_letsencrypt)),
+it was just a matter to define an alias for the star domain.
+
 ## Alternative
 
 There's a paid alternative to all of this named [Home Assistant Cloud](https://www.home-assistant.io/cloud/)
